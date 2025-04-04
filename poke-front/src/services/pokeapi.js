@@ -32,3 +32,19 @@ export async function fetchPokemonDetails(nameOrId){
     }
 
 }
+
+
+export async function fetchPokemonSpecies(nameOrId){
+
+    try {
+
+        const res = await fetch(`${BASE_URL}/pokemon-species/${nameOrId}`);
+        if (!res.ok) throw new Error("Erro ao buscar as espécies");
+        return await res.json();
+        
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
+
+}
