@@ -48,3 +48,30 @@ export async function fetchPokemonSpecies(nameOrId){
     }
 
 }
+
+
+export async function fetchEvolutionChain(nameOrId){
+    try {
+        
+        const res = await fetch(`${BASE_URL}/evolution-chain/${nameOrId}`);
+        if(!res.ok) throw new Error("Erro ao buscar evolução");
+        return await res.json();
+
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
+}
+
+
+export async function fetchPokemonByType(typeName){
+    try {
+        const res = await fetch(`${BASE_URL}/type/${typeName}`);
+        if(!res.ok) throw new Error("Erro ao buscar lista de pokemons do tipo: ", typeName);
+        return await res.json();
+
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
+}
