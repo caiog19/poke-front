@@ -16,3 +16,19 @@ export async function fetchPokemonList(offset = 0, limit = 20) {
     }
 
 }
+
+
+export async function fetchPokemonDetails(nameOrId){
+
+    try {
+
+       const res = await fetch(`${BASE_URL}/pokemon/${nameOrId}`);
+        if(!res.ok) throw new Error("Erro ao buscar os detalhes");
+        return await res.json();
+        
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
+
+}
