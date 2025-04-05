@@ -2,6 +2,7 @@
     <div class="home-container">
 
         <h1 class="title">Pokédex</h1>
+        <FilterBar :types="allTypes" @filter-change="applyFilters" />
 
         <div class="pokemon-list">
             <PokemonCard v-for="pokemon in pokemonList" :key="pokemon.name" :name="pokemon.name" />
@@ -16,10 +17,13 @@
 
 import { fetchPokemonList } from '../../services/pokeapi';
 import PokemonCard from '../../components/PokemonCard/PokemonCard.vue';
+import FilterBar from '../../components/FilterBar/FilterBar.vue'
+
 
 export default {
     components:{
         PokemonCard,
+        FilterBar,
     },
     name: "HomeView",
     data() {
@@ -29,6 +33,7 @@ export default {
             offset: 0,
             limit: 20,
             isLoading: false,
+            allTypes: ['normal', 'fire', 'water', 'grass', 'electric', 'ice', 'fighting', 'poison', 'ground', 'flying', 'psychic', 'bug', 'rock', 'ghost', 'dragon', 'dark', 'steel', 'fairy'],
         };
     },
 
@@ -63,7 +68,11 @@ export default {
                 this.loadMorePokemons();
             }
 
-        }
+        },
+
+        applyFilters({ nameOrId, type}) {
+            console.log('Aplicando filtro: ', nameOrId, type);
+        },
     },
 
 

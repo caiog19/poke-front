@@ -41,4 +41,4 @@ export default {
 
 </script>
 
-<style src="./pokemontcard.css"></style>
+<style src="./pokemoncard.css"></style>
