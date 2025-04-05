@@ -1,6 +1,6 @@
 <template>
     <div class="filter-bar">
-        <input tye="text" placeholder="Digite o nome ou o número" v-model="search" @input="handleinput" />
+        <input type="text" placeholder="Digite o nome ou o número" v-model="search" @input="handleInput" />
 
 
         <select v-model="selectedType" @change="handleTypeChange">
@@ -33,11 +33,12 @@ export default {
     },
     methods: {
         handleInput() {
-            this.$emit('filter-change', {
-                nameOrId: this.search.trim(),
-                type: this.selectedType,
-            });
-        },
+    console.log("handleInput chamado:", this.search);
+    this.$emit('filter-change', {
+      nameOrId: this.search.trim(),
+      type: this.selectedType,
+    });
+  },
         handleTypeChange(){
             this.handleInput();
         },

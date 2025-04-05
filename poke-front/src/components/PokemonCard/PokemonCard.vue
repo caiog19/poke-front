@@ -23,11 +23,12 @@ export default {
             required: true,
         
         },
+        
     },
 
     data() {
         return {
-            pokemon: null,
+            pokemon: this.preloadedData || null,
 
         };
     },
