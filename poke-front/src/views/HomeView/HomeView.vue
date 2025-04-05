@@ -4,10 +4,11 @@
         <h1 class="title">Pokédex</h1>
 
         <div class="pokemon-list">
-            <div class="pokemon-item" v-for="pokemon in pokemonList" :key="pokemon.name">
-                {{ pokemon.name }}
-
-            </div>
+            <PokemonCard 
+                v-for="pokemon in pokemonList"
+                :key="pokemon.name"
+                :name="pokemon.name"
+            />
         </div>
     </div>
 </template>
@@ -15,19 +16,25 @@
 <script>
 
 import { fetchPokemonList } from '../../services/pokeapi';
+import PokemonCard from '../../components/PokemonCard/PokemonCard.vue';
 
 export default {
+    components:{
+        PokemonCard,
+    },
     name: "HomeView",
     data() {
         return {
             pokemonList: [],
+            totalCount: 0,
         };
     },
 
     async mounted() {
-        const data = await fetchPokemonList(0, 100);
+        const data = await fetchPokemonList(0, 20);
         if (data && data.results) {
             this.pokemonList = data.results;
+            this.totalCount = data.count;
         }
     }
 
