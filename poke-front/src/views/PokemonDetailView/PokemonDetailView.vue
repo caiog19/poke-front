@@ -51,13 +51,15 @@ export default {
             if (!this.pokemon || !this.pokemon.sprites) return {};
             const { sprites } = this.pokemon;
             return Object.entries(sprites)
-                .filter(([key, value]) => typeof value === 'string' && value.endsWith('.png'))
                 .reduce((obj, [key, value]) => {
-                    obj[key] = value;
+                    if (typeof value === 'string' && value.endsWith('.png')) {
+                        obj[key] = value;
+                    }
                     return obj;
                 }, {});
-        },
+        }
     },
+
     async created() {
         const id = this.$route.params.id;
 

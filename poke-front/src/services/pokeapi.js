@@ -50,18 +50,21 @@ export async function fetchPokemonSpecies(nameOrId){
 }
 
 
-export async function fetchEvolutionChain(nameOrId){
+export async function fetchEvolutionChain(urlOrId) {
     try {
-        
-        const res = await fetch(`${BASE_URL}/evolution-chain/${nameOrId}`);
-        if(!res.ok) throw new Error("Erro ao buscar evolução");
-        return await res.json();
-
+      const url = typeof urlOrId === 'string' && urlOrId.startsWith('http')
+        ? urlOrId
+        : `${BASE_URL}/evolution-chain/${urlOrId}`;
+  
+      const res = await fetch(url);
+      if (!res.ok) throw new Error("Erro ao buscar evolução");
+      return await res.json();
     } catch (error) {
-        console.error(error);
-        return null;
+      console.error(error);
+      return null;
     }
-}
+  }
+  
 
 
 export async function fetchPokemonByType(typeName){
