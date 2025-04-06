@@ -23,10 +23,14 @@
             </li>
         </ul>
 
-        <h3>Evolução </h3>
-        <ul>
-            <li v-for="e in evolutionChain" :key="e">{{ e }}</li>
-        </ul>
+        <h3>Evolução</h3>
+        <div class="evolution-list">
+            <div class="evo" v-for="evo in evolutionChain" :key="evo.name">
+                <img :src="evo.sprite" :alt="evo.name" />
+                <p>{{ evo.name }}</p>
+            </div>
+        </div>
+
     </div>
 </template>
 
@@ -70,23 +74,33 @@ export default {
         this.species = speciesData;
 
         if (speciesData && speciesData.evolution_chain) {
-            const evoData = await fetchEvolutionChain(
-                speciesData.evolution_chain.url
-            );
-            this.evolutionChain = this.parseEvolutionChain(evoData.chain);
+            const evoData = await fetchEvolutionChain(speciesData.evolution_chain.url);
+
+            if (evoData && evoData.chain) {
+                this.evolutionChain = await this.parseEvolutionChain(evoData.chain);
+            }
         }
+
     },
     methods: {
-        parseEvolutionChain(chain) {
+        async parseEvolutionChain(chain) {
             const result = [];
+
             let current = chain;
             while (current) {
-                result.push(current.species.name);
+                const name = current.species.name;
+                const details = await fetchPokemonDetails(name);
+                const sprite = details?.sprites?.front_default || '';
+
+                result.push({ name, sprite });
+
+
                 current = current.evolves_to[0];
             }
+
             return result;
-        },
-    },
+        }
+    }
 };
 </script>
 
