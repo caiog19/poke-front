@@ -1,37 +1,35 @@
 .pokemon-card {
   background: white;
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-md);
   padding: var(--spacing-md);
-  width: 180px;
   text-align: center;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
 }
 
-.pokemon-card h3 {
-  font-size: var(--font-size-subtitle);
-  color: var(--color-secondary);
+.pokemon-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
-
 
 .pokemon-card img {
   width: 96px;
   height: 96px;
-}
-
-
-.types span {
-  display: inline-block;
-  background-color: #eee;
-  border-radius: 12px;
-  padding: 0.2rem 0.6rem;
-  margin: 0.2rem;
-  font-size: 0.8rem;
-  text-transform: capitalize;
+  margin-bottom: var(--spacing-sm);
 }
 
 .pokemon-id {
+  font-size: 0.9rem;
   color: #888;
-  font-size: 0.85rem;
-  margin-bottom: 0.3rem;
+  margin-bottom: var(--spacing-sm);
+}
+
+.types {
+  margin-top: var(--spacing-sm);
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 4px;
 }
