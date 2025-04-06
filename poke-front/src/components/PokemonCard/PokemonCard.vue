@@ -4,10 +4,11 @@
         <h3> {{ pokemon.name }} </h3>
         <p class="pokemon-id"> #{{ pokemon.id.toString().padStart(4, '0') }}</p>
         <div class="types">
-            <span v-for="type in pokemon.types" :key="type.type.name">
+            <span v-for="type in pokemon.types" :key="type.type.name" class="type" :class="type.type.name">
                 {{ type.type.name }}
             </span>
         </div>
+
     </div>
 </template>
 
@@ -21,12 +22,12 @@ export default {
         name: {
             type: String,
             required: true,
-        
+
         },
-        
+
     },
-    methods:{
-        goToDetails(){
+    methods: {
+        goToDetails() {
             this.$router.push(`/pokemon/${this.name}`)
         }
     },
