@@ -1,5 +1,6 @@
 <template>
     <div class="detail-container" v-if="pokemon && species">
+        <NavbarPoke :types="allTypes" @filter-change="applyFilters" />
         <h1>{{ pokemon.name }} (#{{ pokemon.id.toString().padStart(4, '0') }})</h1>
 
         <div class="sprites">
@@ -40,8 +41,12 @@ import {
     fetchPokemonSpecies,
     fetchEvolutionChain,
 } from '@/services/pokeapi';
+import NavbarPoke from '@/components/NavbarPoke/NavbarPoke.vue';
 
 export default {
+    components: {
+        NavbarPoke,
+    },
     name: 'PokemonDetailView',
     data() {
         return {
