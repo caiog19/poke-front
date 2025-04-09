@@ -43,7 +43,7 @@ export default {
     },
   },
   watch: {
-    selectedType(newValue, oldValue) {
+    selectedType(newValue) {
       console.log('selectedType mudou para:', newValue); 
       this.handleInput();
     }
