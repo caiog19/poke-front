@@ -1,9 +1,7 @@
 <template>
     <div class="home-container">
 
-        <h1 class="title">Pokédex</h1>
-        <FilterBar :types="allTypes" @filter-change="applyFilters" />
-
+        <NavbarPoke :types="allTypes" @filter-change="applyFilters" />
         <div class="pokemon-list">
             <PokemonCard v-for="pokemon in pokemonList" :key="pokemon.name" :name="pokemon.name"/>
         </div>
@@ -17,13 +15,12 @@
 
 import { fetchPokemonList, fetchPokemonDetails, fetchPokemonByType } from '../../services/pokeapi';
 import PokemonCard from '../../components/PokemonCard/PokemonCard.vue';
-import FilterBar from '../../components/FilterBar/FilterBar.vue'
-
+import NavbarPoke from '../../components/NavbarPoke/NavbarPoke.vue';
 
 export default {
     components: {
         PokemonCard,
-        FilterBar,
+        NavbarPoke,
     },
     name: "HomeView",
     data() {
