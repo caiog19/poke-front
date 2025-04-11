@@ -26,13 +26,14 @@ export default {
   computed: {
     computedOptions() {
       const defaultOption = { value: '', label: 'Todos os tipos' };
-      const typeOptions = this.types.map(type => ({
-        value: type,
-        label: type,
+      const typeOptions = (this.types.results || this.types).map(type => ({
+        value: type.name || type,
+        label: type.name || type,
       }));
       return [defaultOption, ...typeOptions];
     }
   },
+
   methods: {
     handleInput() {
       console.log("handleInput chamado:", this.search);
@@ -44,7 +45,7 @@ export default {
   },
   watch: {
     selectedType(newValue) {
-      console.log('selectedType mudou para:', newValue); 
+      console.log('selectedType mudou para:', newValue);
       this.handleInput();
     }
   }

@@ -78,3 +78,15 @@ export async function fetchPokemonByType(typeName){
         return null;
     }
 }
+
+export async function fetchAllTypes() {
+    try {
+      const res = await fetch(`${BASE_URL}/type`);
+      if (!res.ok) throw new Error('Erro ao buscar os tipos');
+      return await res.json();
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  }
+  
