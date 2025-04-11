@@ -75,7 +75,7 @@ export default {
     },
 
     async applyFilters({ nameOrId, type }) {
-      console.log("applyFilters => nameOrId:", nameOrId, "type:", type);
+     
       this.pokemonList = [];
       this.offset = 0;
 

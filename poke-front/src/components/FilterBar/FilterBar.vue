@@ -36,7 +36,7 @@ export default {
 
   methods: {
     handleInput() {
-      console.log("handleInput chamado:", this.search);
+      
       this.$emit('filter-change', {
         nameOrId: this.search.trim(),
         type: this.selectedType,
@@ -45,7 +45,7 @@ export default {
   },
   watch: {
     selectedType(newValue) {
-      console.log('selectedType mudou para:', newValue);
+     
       this.handleInput();
     }
   }
