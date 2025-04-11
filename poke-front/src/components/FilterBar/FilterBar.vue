@@ -26,9 +26,10 @@ export default {
   computed: {
     computedOptions() {
       const defaultOption = { value: '', label: 'Todos os tipos' };
-      const typeOptions = (this.types.results || this.types).map(type => ({
+      const typeData = Array.isArray(this.types?.results) ? this.types.results : Array.isArray(this.types) ? this.types : [];
+      const typeOptions = typeData.map(type => ({
         value: type.name || type,
-        label: type.name || type,
+        label: (type.name || type).charAt(0).toUpperCase() + (type.name || type).slice(1),
       }));
       return [defaultOption, ...typeOptions];
     }
@@ -36,7 +37,6 @@ export default {
 
   methods: {
     handleInput() {
-      
       this.$emit('filter-change', {
         nameOrId: this.search.trim(),
         type: this.selectedType,
@@ -45,11 +45,10 @@ export default {
   },
   watch: {
     selectedType() {
-      
       this.handleInput();
     }
   }
 };
 </script>
 
-<style src="./filterbar.css"></style>
+<style src="./filterbar.css" scoped></style>
