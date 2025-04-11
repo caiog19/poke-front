@@ -44,8 +44,8 @@ export default {
     },
   },
   watch: {
-    selectedType(newValue) {
-     
+    selectedType() {
+      
       this.handleInput();
     }
   }
